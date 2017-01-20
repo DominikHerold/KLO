@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klo.Core", "Klo.Core\Klo.Core.csproj", "{7A6C7D10-EC2A-4FFC-96B4-B79579A12129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klo.Core.Tests", "Klo.Core.Tests\Klo.Core.Tests.csproj", "{53340C4F-637A-4232-8F7D-A60D151A211F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klo.Tray", "Klo.Tray\Klo.Tray.csproj", "{EF1F5FB2-3036-4337-9055-529BC36F3402}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A6C7D10-EC2A-4FFC-96B4-B79579A12129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A6C7D10-EC2A-4FFC-96B4-B79579A12129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A6C7D10-EC2A-4FFC-96B4-B79579A12129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A6C7D10-EC2A-4FFC-96B4-B79579A12129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53340C4F-637A-4232-8F7D-A60D151A211F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53340C4F-637A-4232-8F7D-A60D151A211F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53340C4F-637A-4232-8F7D-A60D151A211F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53340C4F-637A-4232-8F7D-A60D151A211F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF1F5FB2-3036-4337-9055-529BC36F3402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1F5FB2-3036-4337-9055-529BC36F3402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1F5FB2-3036-4337-9055-529BC36F3402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1F5FB2-3036-4337-9055-529BC36F3402}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
