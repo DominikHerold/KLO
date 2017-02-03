@@ -34,17 +34,17 @@ namespace Klo.Tray
                 var isInUse = _klo.IsInUse();
                 if (!isInUse.HasValue)
                 {
-                    notifyIcon1.Icon = new Icon("orange.ico");
+                    notifyIcon1.Icon = new Icon("warning.ico");
                     notifyIcon1.Text = "Fehler";
                 }
                 else if (isInUse.GetValueOrDefault(true))
                 {
-                    notifyIcon1.Icon = new Icon("red.ico");
+                    notifyIcon1.Icon = new Icon("trafficlight_red_16.ico");
                     notifyIcon1.Text = "Besetzt";
                 }
                 else
                 {
-                    notifyIcon1.Icon = new Icon("green.ico");
+                    notifyIcon1.Icon = new Icon("trafficlight_green_16.ico");
                     notifyIcon1.Text = "Frei";
                 }
             }
