@@ -53,5 +53,23 @@ namespace Klo.Tray
                 _timer.Enabled = true;
             }
         }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            OnTimeEvent(null, null);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
