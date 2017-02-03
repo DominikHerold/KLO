@@ -86,13 +86,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="green.ico">
+    <None Include="warning.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="orange.ico">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="trafficlight_green_16.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="red.ico">
+    <None Include="trafficlight_red_16.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
