@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Drawing;
 using System.Timers;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace Klo.Tray
 
         private bool _notificationWanted = false;
         private bool? _lastState = false;
+        private DateTime _inUseSince = DateTime.Now;
 
         public Form1()
         {
@@ -41,12 +43,13 @@ namespace Klo.Tray
                 else if (_lastState.GetValueOrDefault(true))
                 {
                     notifyIcon1.Icon = new Icon("trafficlight_red_16.ico");
-                    notifyIcon1.Text = "Besetzt";
+                    notifyIcon1.Text = "Besetzt seit " + Math.Round((DateTime.Now - _inUseSince).TotalMinutes, 0) + " Minuten";
                 }
                 else
                 {
                     notifyIcon1.Icon = new Icon("trafficlight_green_16.ico");
                     notifyIcon1.Text = "Frei";
+                    _inUseSince = DateTime.Now;
 
                     if (_notificationWanted)
                     {
@@ -70,8 +73,8 @@ namespace Klo.Tray
         {
             if (e.Button == MouseButtons.Right)
             {
+                notifyWhenFreeToolStripMenuItem.Enabled = _lastState.GetValueOrDefault(false);
                 notifyWhenFreeToolStripMenuItem.Checked = _notificationWanted;
-                contextMenuStrip1.Show(MousePosition);
             }
         }
 
