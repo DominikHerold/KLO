@@ -66,7 +66,7 @@ namespace Klo.Tray
 
         private void SendFreeNotification()
         {
-            notifyIcon1.ShowBalloonTip(10000, "Entspannung naht", "KLO ist frei! :-)", ToolTipIcon.Info);
+            notifyIcon1.ShowBalloonTip(10000, "Erleichterung naht", "KLO ist frei! :-)", ToolTipIcon.Info);
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
