@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Drawing;
+using System.Media;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -70,6 +71,7 @@ namespace Klo.Tray
         private void SendFreeNotification()
         {
             notifyIcon1.ShowBalloonTip(10000, "Erleichterung naht", "KLO ist frei! :-)", ToolTipIcon.Info);
+            new SoundPlayer("spuelung.wav").Play();
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
