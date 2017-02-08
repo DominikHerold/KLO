@@ -14,7 +14,7 @@ namespace Klo.Tray
         private readonly WebClientWrapper _client;
         private readonly Core.Klo _klo;
 
-        private bool _notificationWanted = false;
+        private bool _notificationWanted;
         private bool? _lastState = false;
         private DateTime _inUseSince = DateTime.Now;
 
@@ -32,35 +32,38 @@ namespace Klo.Tray
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
         {
-            try
+            lock (this)
             {
-                _lastState = _klo.IsInUse();
-                if (!_lastState.HasValue)
+                try
                 {
-                    notifyIcon1.Icon = new Icon("warning.ico");
-                    notifyIcon1.Text = "Fehler";
-                }
-                else if (_lastState.GetValueOrDefault(true))
-                {
-                    notifyIcon1.Icon = new Icon("trafficlight_red_16.ico");
-                    notifyIcon1.Text = "Besetzt seit " + Math.Round((DateTime.Now - _inUseSince).TotalMinutes, 0) + " Minuten";
-                }
-                else
-                {
-                    notifyIcon1.Icon = new Icon("trafficlight_green_16.ico");
-                    notifyIcon1.Text = "Frei";
-                    _inUseSince = DateTime.Now;
-
-                    if (_notificationWanted)
+                    _lastState = _klo.IsInUse();
+                    if (!_lastState.HasValue)
                     {
-                        _notificationWanted = false;
-                        SendFreeNotification();
+                        notifyIcon1.Icon = new Icon("warning.ico");
+                        notifyIcon1.Text = "Fehler";
+                    }
+                    else if (_lastState.GetValueOrDefault(true))
+                    {
+                        notifyIcon1.Icon = new Icon("trafficlight_red_16.ico");
+                        notifyIcon1.Text = "Besetzt seit " + Math.Round((DateTime.Now - _inUseSince).TotalMinutes, 0) + " Minuten";
+                    }
+                    else
+                    {
+                        notifyIcon1.Icon = new Icon("trafficlight_green_16.ico");
+                        notifyIcon1.Text = "Frei";
+                        _inUseSince = DateTime.Now;
+
+                        if (_notificationWanted)
+                        {
+                            _notificationWanted = false;
+                            SendFreeNotification();
+                        }
                     }
                 }
-            }
-            finally
-            {
-                _timer.Enabled = true;
+                finally
+                {
+                    _timer.Enabled = true;
+                }
             }
         }
 
@@ -71,31 +74,31 @@ namespace Klo.Tray
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                notifyWhenFreeToolStripMenuItem.Enabled = _lastState.GetValueOrDefault(false);
-                notifyWhenFreeToolStripMenuItem.Checked = _notificationWanted;
-            }
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            notifyWhenFreeToolStripMenuItem.Enabled = _lastState.GetValueOrDefault(false);
+            notifyWhenFreeToolStripMenuItem.Checked = _notificationWanted;
         }
 
-        private void refreshToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OnTimeEvent(null, null);
         }
 
-        private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void notifyWhenFreeToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void notifyWhenFreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_lastState.GetValueOrDefault())
-            {
-                _notificationWanted = true;
-                notifyWhenFreeToolStripMenuItem.Checked = true;
-                notifyIcon1.ShowBalloonTip(2000, "Besetzt!", "Aber du wirst benachrichtigt, sobald KLO frei ist!", ToolTipIcon.Info);
-            }
+            if (!_lastState.GetValueOrDefault())
+                return;
+
+            _notificationWanted = true;
+            notifyWhenFreeToolStripMenuItem.Checked = true;
+            notifyIcon1.ShowBalloonTip(2000, "Besetzt!", "Aber du wirst benachrichtigt, sobald KLO frei ist!", ToolTipIcon.Info);
         }
     }
 }
