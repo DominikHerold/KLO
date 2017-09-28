@@ -9,7 +9,7 @@ using Klo.Core;
 
 namespace Klo.Tray
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         private readonly System.Timers.Timer _timer;
         private readonly WebClientWrapper _client;
@@ -19,7 +19,7 @@ namespace Klo.Tray
         private bool? _lastState = false;
         private DateTime _inUseSince = DateTime.Now;
 
-        public Form1()
+        public Main()
         {
             var host = ConfigurationManager.AppSettings["host"];
             InitializeComponent();

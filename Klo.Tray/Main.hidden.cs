@@ -2,7 +2,7 @@
 
 namespace Klo.Tray
 {
-    partial class Form1
+    partial class Main
     {
         // To really *hide* the Form window (via https://stackoverflow.com/a/17893626/385507)
         protected override CreateParams CreateParams
