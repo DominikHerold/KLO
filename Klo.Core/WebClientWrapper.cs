@@ -17,8 +17,6 @@ namespace Klo.Core
                 foreach (var header in optionalHeaders)
                     webClient.Headers.Set(header.Key, header.Value);
 
-                ServicePointManager.Expect100Continue = true;
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 return webClient.DownloadString(address);
             }
         }

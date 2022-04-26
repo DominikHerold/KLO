@@ -27,7 +27,7 @@ namespace Klo.Core
         {
             try
             {
-                return !_webClient.DownloadString(_address, _optionalHeaders).Contains("true");
+                return _webClient.DownloadString(_address, _optionalHeaders).Contains("true");
             }
             catch (Exception)
             {
